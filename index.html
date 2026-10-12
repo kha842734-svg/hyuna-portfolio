@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김현아 Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+/* =========================================================
+   Design tokens
+   ========================================================= */
+:root {
+  --bg: #FFFFFF;
+  --text-main: #191F28;
+  --text-body: #4E5968;
+  --surface: #F2F4F6;
+  --accent: #3182F6;
+  --accent-light: #E8F3FF;
+
+  --slide-w: 1920px;
+  --slide-h: 1080px;
+  --pad-top: 80px;
+  --pad-x: 120px;
+  --pad-bottom: 100px;
+  --head-gap: 56px;        /* 제목 영역 → 본문 영역 */
+  --radius: 6px;
+  --line: 2px solid var(--surface);
+
+  --fs-meta: 22px;
+  --fs-title: 44px;
+  --fs-label: 18px;
+  --fs-h3: 26px;
+  --fs-body: 22px;
+  --fs-caption: 19px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #FFFFFF; }
+body {
+  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  word-break: keep-all;
+}
+ul, ol { list-style: none; }
+p, li, h2, h3, h4 { text-wrap: pretty; }
+.num { font-variant-numeric: tabular-nums; letter-spacing: -0.02em; }
+
+/* =========================================================
+   Stage: 1920×1080 고정, 화면 크기에 맞춰 비율 유지 축소/확대
+   ========================================================= */
+.stage {
+  position: absolute; left: 50%; top: 50%;
+  width: var(--slide-w); height: var(--slide-h);
+  transform-origin: 0 0;
+}
+.slide {
+  position: absolute; inset: 0;
+  background: var(--bg);
+  padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+  display: none; flex-direction: column;
+}
+.slide.is-active { display: flex; }
+
+/* ---------- 공통: 헤더 ---------- */
+.slide-head { min-height: 168px; margin-bottom: var(--head-gap); }
+.meta {
+  font-size: var(--fs-meta); font-weight: 500; color: var(--text-body);
+  line-height: 28px; margin-bottom: 16px;
+}
+.meta .sep { margin: 0 10px; }
+.title {
+  font-size: var(--fs-title); font-weight: 700; line-height: 1.4;
+  letter-spacing: -0.025em; max-width: 1480px;
+}
+
+/* ---------- 공통: 본문 / 라벨 ---------- */
+.slide-body { flex: 1; min-height: 0; display: grid; }
+.label {
+  font-size: var(--fs-label); font-weight: 600; color: var(--text-body);
+  letter-spacing: 0.06em; line-height: 1; margin-bottom: 24px;
+}
+
+/* ---------- 공통: 푸터 ---------- */
+.slide-foot {
+  position: absolute; left: var(--pad-x); right: var(--pad-x); bottom: 48px;
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 18px; color: var(--text-body);
+}
+.page { font-size: 20px; font-weight: 600; color: var(--text-main); }
+.page .total { color: var(--text-body); font-weight: 500; }
+
+/* ---------- 공통: 화면 이미지 ---------- */
+.screen { display: flex; flex-direction: column; min-height: 0; }
+.screen-frame {
+  flex: 1; min-height: 0;
+  background: var(--surface); border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  padding: 28px;
+}
+.screen-frame img { max-width: 100%; max-height: 100%; display: block; border-radius: 4px; }
+.screen-caption { margin-top: 14px; font-size: var(--fs-caption); color: var(--text-body); line-height: 1.45; }
+.placeholder {
+  color: var(--text-body); font-size: var(--fs-caption); text-align: center; line-height: 1.6;
+}
+.placeholder strong { display: block; color: var(--text-main); font-size: 22px; font-weight: 700; }
+
+/* =========================================================
+   04 — Process (흐름형)
+   ========================================================= */
+.s04 .slide-body { grid-template-columns: 1fr 360px; column-gap: 72px; }
+.s04 .main { display: flex; flex-direction: column; min-height: 0; }
+
+.process { display: grid; grid-template-columns: repeat(4, 1fr); column-gap: 0; }
+.step { padding-right: 36px; }
+.step-track { position: relative; height: 32px; margin-bottom: 20px; display: flex; align-items: center; }
+.step-no { font-size: 22px; font-weight: 700; padding-right: 16px; background: var(--bg); position: relative; z-index: 1; }
+.step-track::after {               /* 다음 단계로 이어지는 선 */
+  content: ""; position: absolute; left: 0; right: -18px; top: 50%;
+  border-top: 2px solid var(--text-main);
+}
+.step-track::before {              /* 화살촉 */
+  content: ""; position: absolute; right: -17px; top: 50%;
+  width: 10px; height: 10px; margin-top: -5px;
+  border-top: 2px solid var(--text-main); border-right: 2px solid var(--text-main);
+  transform: rotate(45deg); transform-origin: center;
+}
+.step:last-child .step-track::after,
+.step:last-child .step-track::before { display: none; }
+.step h3 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.35; margin-bottom: 14px; letter-spacing: -0.02em; }
+.step li {
+  font-size: var(--fs-body); color: var(--text-body); line-height: 1.5;
+  padding-left: 14px; position: relative;
+}
+.step li + li { margin-top: 8px; }
+.step li::before { content: "·"; position: absolute; left: 0; }
+
+.result-04 {
+  margin-top: auto; padding-top: 40px; border-top: var(--line);
+  display: grid; grid-template-columns: 560px 1fr; column-gap: 72px;
+}
+.chart-title { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+.chart-sub { font-size: var(--fs-caption); color: var(--text-body); margin-bottom: 8px; }
+.bars { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 32px; align-items: end; height: 180px; border-bottom: 2px solid var(--text-main); }
+.bar-col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; }
+.bar-val { font-size: 28px; font-weight: 700; color: var(--text-body); margin-bottom: 10px; }
+.bar { width: 100%; max-width: 120px; background: var(--accent-light); border-radius: 3px 3px 0 0; }
+.bar-col.is-key .bar { background: var(--accent); }
+.bar-col.is-key .bar-val { font-size: 44px; color: var(--accent); }
+.bar-x { display: grid; grid-template-columns: repeat(3, 1fr); column-gap: 32px; margin-top: 12px; }
+.bar-x span { text-align: center; font-size: var(--fs-caption); color: var(--text-body); }
+
+.kpis { display: flex; flex-direction: column; justify-content: flex-end; }
+.kpi + .kpi { margin-top: 32px; padding-top: 32px; border-top: var(--line); }
+.kpi-value { font-size: 60px; font-weight: 700; line-height: 1.1; }
+.kpi-value.is-text { font-size: 34px; line-height: 1.3; }
+.kpi-desc { font-size: var(--fs-body); color: var(--text-body); margin-top: 8px; line-height: 1.45; }
+
+/* =========================================================
+   08 — Before → After (비교형)
+   ========================================================= */
+.s08 .slide-body { grid-template-columns: 1fr 480px; column-gap: 72px; }
+.s08 .main { display: flex; flex-direction: column; min-height: 0; }
+
+.ba {
+  display: grid;
+  grid-template-columns: 128px 1fr 64px 1fr;
+}
+.ba > div { text-wrap: balance; padding: 30px 0; border-top: var(--line); display: flex; align-items: center; }
+.ba .ba-head { border-top: 0; padding-top: 0; padding-bottom: 20px; flex-direction: column; align-items: flex-start; justify-content: flex-end; }
+.ba .after { background: var(--accent-light); padding-left: 28px; padding-right: 28px; }
+.ba .ba-head.after { padding-top: 28px; border-radius: var(--radius) var(--radius) 0 0; }
+.ba .after.is-last { border-radius: 0 0 var(--radius) var(--radius); }
+.ba-tag { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.06em; color: var(--text-body); margin-bottom: 10px; }
+.ba-name { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.ba-name .since { font-size: var(--fs-caption); font-weight: 500; color: var(--text-body); margin-left: 10px; letter-spacing: 0; }
+.ba-head.before .ba-name { color: var(--text-body); }
+.ba-key { font-size: var(--fs-caption); font-weight: 600; color: var(--text-body); }
+.ba-before { font-size: var(--fs-body); color: var(--text-body); line-height: 1.5; padding-right: 24px !important; }
+.ba-arrow { justify-content: center; font-size: 28px; color: var(--text-main); }
+.ba-after { font-size: 24px; font-weight: 600; line-height: 1.45; color: var(--text-main); }
+.ba-empty { color: var(--text-body); }
+
+.result-08 {
+  margin-top: auto; padding-top: 40px; border-top: var(--line);
+  display: grid; grid-template-columns: 300px 1fr; column-gap: 64px;
+}
+.r-launch .kpi-value { font-size: 72px; color: var(--accent); }
+.r-cases h4 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.4; letter-spacing: -0.02em; margin-bottom: 18px; }
+.cases { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; column-gap: 56px; }
+.case-val { font-size: 40px; font-weight: 700; line-height: 1.15; }
+.case-name { font-size: var(--fs-body); color: var(--text-body); margin-top: 6px; }
+
+.s08 .screens { flex: 1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; min-height: 0; }
+.s08 .screen-frame { padding: 20px; }
+
+/* ---------- 조작 힌트 (슬라이드 외부, 인쇄/캡처 시 영향 없음) ---------- */
+.hint {
+  position: fixed; right: 16px; bottom: 12px; font-size: 12px; color: var(--text-body);
+  opacity: 0; transition: opacity .3s; pointer-events: none;
+}
+body:hover .hint { opacity: .6; }
+</style>
+</head>
+<body>
+
+<div class="stage" id="stage">
+
+  <!-- ===================================================
+       04 · 플래티넘 플랜
+       =================================================== -->
+  <section class="slide s04" data-page="04">
+    <header class="slide-head">
+      <p class="meta">ASSISTCARD<span class="sep">·</span>2025.02–2025.04<span class="sep">·</span>기여도 80%</p>
+      <h2 class="title">객단가가 떨어진 단기 플랜에 상위 가격대 상품을 추가해,<br>출시 3개월 만에 상품군 매출의 29%를 만들었습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="main">
+        <p class="label">PROCESS</p>
+        <ol class="process">
+          <li class="step">
+            <div class="step-track"><span class="step-no num">01</span></div>
+            <h3>객단가 하락</h3>
+            <ul>
+              <li>가격 인하 이후 객단가 하락으로 거래액 성장 정체</li>
+              <li>단기 상품군 내 프리미엄 선택지 부재</li>
+            </ul>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">02</span></div>
+            <h3>가격·마진율 검토</h3>
+            <ul>
+              <li>단기 플랜 객단가 하락 원인 분석</li>
+              <li>기존 상품 라인업으로는 상위 수요층 흡수에 한계</li>
+            </ul>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">03</span></div>
+            <h3>상위 가격대 상품 기획</h3>
+            <ul>
+              <li>기존 상품 구조는 유지하면서 상위 가격대 프리미엄 플랜 추가</li>
+              <li>가격대별 고객 수요를 고려한 신규 상품 구성</li>
+            </ul>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">04</span></div>
+            <h3>출시 후 성과</h3>
+            <ul>
+              <li>상품 포트폴리오 재정비</li>
+              <li>출시 이후 지표 분석</li>
+            </ul>
+          </li>
+        </ol>
+
+        <div class="result-04">
+          <div class="chart">
+            <p class="chart-title">단기 플랜 상품군 내 플래티넘 플랜 매출 비중</p>
+            <p class="chart-sub">출시 3개월 내 상품군 상위권 진입</p>
+            <div class="bars">
+              <div class="bar-col"><span class="bar-val num">0%</span><div class="bar" style="height:0"></div></div>
+              <div class="bar-col"><span class="bar-val num">20%</span><div class="bar" style="height:83px"></div></div>
+              <div class="bar-col is-key"><span class="bar-val num">29%</span><div class="bar" style="height:120px"></div></div>
+            </div>
+            <div class="bar-x"><span>출시 전</span><span>출시 첫 달</span><span>출시 3개월 내</span></div>
+          </div>
+
+          <div class="kpis">
+            <div class="kpi">
+              <p class="kpi-value num">+22%</p>
+              <p class="kpi-desc">기존 단기 플랜 대비 가입자 증가</p>
+            </div>
+            <div class="kpi">
+              <p class="kpi-value is-text">객단가 정상화 기여</p>
+              <p class="kpi-desc">단기 상품군 객단가 정상화 및 포트폴리오 구조 안정화</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <figure class="screen">
+        <p class="label">SCREEN</p>
+        <div class="screen-frame">
+          <img src="assets/04-platinum-plan-select.png" alt="어시스트카드 단기 플랜 선택 화면. 슬림·베이직·프리미엄·플래티넘 플랜이 가격순으로 나열되어 있다.">
+        </div>
+        <figcaption class="screen-caption">단기 플랜 선택 화면 — 최상위 가격대 플래티넘 플랜 추가</figcaption>
+      </figure>
+    </div>
+
+    <footer class="slide-foot">
+      <span>김현아 · E-commerce Business Operations Portfolio</span>
+      <span class="page num">04 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       08 · 브랜드데이
+       =================================================== -->
+  <section class="slide s08" data-page="08">
+    <header class="slide-head">
+      <p class="meta">현대이지웰<span class="sep">·</span>ㅎㅎ특가 2020.01– / 브랜드데이 2023.08–</p>
+      <h2 class="title">오래 운영해 효과가 줄어든 특가 포맷 대신 브랜드 단독 포맷을 새로 만들고,<br>쿠폰 비용 구조를 수익률 기준으로 설계했습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="main">
+        <div class="ba">
+          <!-- 헤더 -->
+          <div class="ba-head"></div>
+          <div class="ba-head before">
+            <span class="ba-tag">BEFORE</span>
+            <span class="ba-name">ㅎㅎ특가<span class="since num">2020.01–</span></span>
+          </div>
+          <div class="ba-head"></div>
+          <div class="ba-head after">
+            <span class="ba-tag">AFTER</span>
+            <span class="ba-name">브랜드데이<span class="since num">2023.08–</span></span>
+          </div>
+
+          <!-- 행 1 -->
+          <div class="ba-key">노출</div>
+          <div class="ba-before">장기 운영으로 브랜드 단독 노출 효과 감소</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after after">브랜드 집중형 단독 포맷</div>
+
+          <!-- 행 2 -->
+          <div class="ba-key">혜택 메시지</div>
+          <div class="ba-before">특가 중심이라 브랜드 메시지 전달 한계</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after after">할인쿠폰 중심으로 혜택 메시지 명확화</div>
+
+          <!-- 행 3 -->
+          <div class="ba-key">쿠폰 비용</div>
+          <div class="ba-before ba-empty">—</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after after is-last">수익률을 고려한 쿠폰 비용 구조 설계</div>
+        </div>
+
+        <div class="result-08">
+          <div class="r-launch">
+            <p class="label">RESULT</p>
+            <p class="kpi-value num">약 2배</p>
+            <p class="kpi-desc">브랜드데이 런칭 초기 매출</p>
+          </div>
+          <div class="r-cases">
+            <p class="label">&nbsp;</p>
+            <h4>브랜드 단독 프로모션 운영 브랜드 거래액 성장 사례</h4>
+            <div class="cases">
+              <div><p class="case-val num">+505%</p><p class="case-name">랭킹닭컴</p></div>
+              <div><p class="case-val num">+509%</p><p class="case-name">마이셰프</p></div>
+              <div><p class="case-val num">+221%</p><p class="case-name">종근당건강</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen">
+        <p class="label">SCREEN</p>
+        <div class="screens">
+          <figure class="screen">
+            <div class="screen-frame">
+              <!-- 실제 이미지로 교체: <img src="assets/08-hh-sale.png" alt="ㅎㅎ특가 화면"> -->
+              <p class="placeholder"><strong>ㅎㅎ특가</strong>화면 이미지 영역</p>
+            </div>
+            <figcaption class="screen-caption">Before · ㅎㅎ특가</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame">
+              <!-- 실제 이미지로 교체: <img src="assets/08-brandday.png" alt="브랜드데이 화면"> -->
+              <p class="placeholder"><strong>브랜드데이</strong>화면 이미지 영역</p>
+            </div>
+            <figcaption class="screen-caption">After · 브랜드데이</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span>김현아 · E-commerce Business Operations Portfolio</span>
+      <span class="page num">08 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+</div>
+
+<div class="hint">← → 이동 · F 전체화면</div>
+
+<script>
+(function () {
+  var stage = document.getElementById('stage');
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var W = 1920, H = 1080, current = 0;
+
+  function fit() {
+    var s = Math.min(window.innerWidth / W, window.innerHeight / H);
+    stage.style.transform = 'scale(' + s + ') translate(-50%, -50%)';
+  }
+
+  function show(i) {
+    current = Math.max(0, Math.min(slides.length - 1, i));
+    slides.forEach(function (el, n) { el.classList.toggle('is-active', n === current); });
+    history.replaceState(null, '', '#' + slides[current].dataset.page);
+  }
+
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' '].indexOf(e.key) > -1) { e.preventDefault(); show(current + 1); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp'].indexOf(e.key) > -1) { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'Home') show(0);
+    else if (e.key === 'End') show(slides.length - 1);
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+      else document.exitFullscreen();
+    }
+  });
+
+  window.addEventListener('resize', fit);
+  var start = slides.findIndex(function (el) { return '#' + el.dataset.page === location.hash; });
+  fit();
+  show(start > -1 ? start : 0);
+})();
+</script>
+</body>
+</html>
