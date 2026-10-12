@@ -84,7 +84,7 @@ p, li, h2, h3, h4 { text-wrap: pretty; }
 /* ---------- 공통: 푸터 ---------- */
 .slide-foot {
   position: absolute; left: var(--pad-x); right: var(--pad-x); bottom: 48px;
-  display: flex; justify-content: space-between; align-items: baseline;
+  display: flex; justify-content: flex-end; align-items: baseline;
   font-size: 18px; color: var(--text-body);
 }
 .page { font-size: 20px; font-weight: 600; color: var(--text-main); }
@@ -153,7 +153,7 @@ p, li, h2, h3, h4 { text-wrap: pretty; }
 .kpis { display: flex; flex-direction: column; justify-content: flex-end; }
 .kpi + .kpi { margin-top: 32px; padding-top: 32px; border-top: var(--line); }
 .kpi-value { font-size: 60px; font-weight: 700; line-height: 1.1; }
-.kpi-value.is-text { font-size: 34px; line-height: 1.3; }
+.kpi-note { margin-top: 32px; padding-top: 24px; border-top: var(--line); font-size: var(--fs-body); color: var(--text-body); line-height: 1.5; }
 .kpi-desc { font-size: var(--fs-body); color: var(--text-body); margin-top: 8px; line-height: 1.45; }
 
 /* =========================================================
@@ -164,32 +164,33 @@ p, li, h2, h3, h4 { text-wrap: pretty; }
 
 .ba {
   display: grid;
-  grid-template-columns: 128px 1fr 64px 1fr;
+  grid-template-columns: 1fr 72px 1.1fr;
+  align-items: center;
 }
-.ba > div { text-wrap: balance; padding: 30px 0; border-top: var(--line); display: flex; align-items: center; }
-.ba .ba-head { border-top: 0; padding-top: 0; padding-bottom: 20px; flex-direction: column; align-items: flex-start; justify-content: flex-end; }
-.ba .after { background: var(--accent-light); padding-left: 28px; padding-right: 28px; }
-.ba .ba-head.after { padding-top: 28px; border-radius: var(--radius) var(--radius) 0 0; }
-.ba .after.is-last { border-radius: 0 0 var(--radius) var(--radius); }
+.ba > div { text-wrap: balance; padding: 22px 0; }
+.ba .ba-head { padding: 22px 0 20px; margin-bottom: 14px; border-bottom: var(--line); align-self: stretch; display: flex; flex-direction: column; justify-content: flex-end; }
+.ba .ba-head.after { padding: 22px 28px 20px; background: var(--accent-light); border-radius: var(--radius); border-bottom: 0; }
 .ba-tag { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.06em; color: var(--text-body); margin-bottom: 10px; }
 .ba-name { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
 .ba-name .since { font-size: var(--fs-caption); font-weight: 500; color: var(--text-body); margin-left: 10px; letter-spacing: 0; }
 .ba-head.before .ba-name { color: var(--text-body); }
-.ba-key { font-size: var(--fs-caption); font-weight: 600; color: var(--text-body); }
 .ba-before { font-size: var(--fs-body); color: var(--text-body); line-height: 1.5; padding-right: 24px !important; }
-.ba-arrow { justify-content: center; font-size: 28px; color: var(--text-main); }
-.ba-after { font-size: 24px; font-weight: 600; line-height: 1.45; color: var(--text-main); }
+.ba-arrow { text-align: center; font-size: 28px; color: var(--text-body); }
+.ba-after { font-size: 24px; font-weight: 700; line-height: 1.45; color: var(--text-main); padding-left: 28px !important; }
+.ba-after em { font-style: normal; color: var(--accent); }
 .ba-empty { color: var(--text-body); }
 
 .result-08 {
   margin-top: auto; padding-top: 40px; border-top: var(--line);
-  display: grid; grid-template-columns: 300px 1fr; column-gap: 64px;
+  display: grid; grid-template-columns: 340px 1fr; column-gap: 56px; align-items: end;
 }
-.r-launch .kpi-value { font-size: 72px; color: var(--accent); }
-.r-cases h4 { font-size: var(--fs-h3); font-weight: 700; line-height: 1.4; letter-spacing: -0.02em; margin-bottom: 18px; }
-.cases { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; column-gap: 56px; }
-.case-val { font-size: 40px; font-weight: 700; line-height: 1.15; }
-.case-name { font-size: var(--fs-body); color: var(--text-body); margin-top: 6px; }
+.r-launch .kpi-value { font-size: 88px; color: var(--accent); line-height: 1.05; }
+.r-launch .kpi-desc { font-size: 24px; font-weight: 600; color: var(--text-main); margin-top: 12px; }
+.r-cases { background: var(--surface); border-radius: var(--radius); padding: 24px 32px 26px; }
+.r-cases h4 { font-size: var(--fs-body); font-weight: 600; color: var(--text-body); line-height: 1.4; margin-bottom: 14px; }
+.cases { display: grid; grid-template-columns: repeat(3, auto); justify-content: start; column-gap: 48px; }
+.case-val { font-size: 34px; font-weight: 700; line-height: 1.15; }
+.case-name { font-size: var(--fs-caption); color: var(--text-body); margin-top: 4px; }
 
 .s08 .screens { flex: 1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; min-height: 0; }
 .s08 .screen-frame { padding: 20px; }
@@ -212,7 +213,7 @@ body:hover .hint { opacity: .6; }
   <section class="slide s04" data-page="04">
     <header class="slide-head">
       <p class="meta">ASSISTCARD<span class="sep">·</span>2025.02–2025.04<span class="sep">·</span>기여도 80%</p>
-      <h2 class="title">객단가가 떨어진 단기 플랜에 상위 가격대 상품을 추가해,<br>출시 3개월 만에 상품군 매출의 29%를 만들었습니다</h2>
+      <h2 class="title">상위 가격대 플랜을 추가해,<br>3개월 만에 상품군 매출 비중 29%를 만들었습니다</h2>
     </header>
 
     <div class="slide-body">
@@ -231,8 +232,8 @@ body:hover .hint { opacity: .6; }
             <div class="step-track"><span class="step-no num">02</span></div>
             <h3>가격·마진율 검토</h3>
             <ul>
-              <li>단기 플랜 객단가 하락 원인 분석</li>
-              <li>기존 상품 라인업으로는 상위 수요층 흡수에 한계</li>
+              <li>상품별 판매가·마진율 검토</li>
+              <li>가격대별 수익성과 고객 선택지 비교</li>
             </ul>
           </li>
           <li class="step">
@@ -270,10 +271,7 @@ body:hover .hint { opacity: .6; }
               <p class="kpi-value num">+22%</p>
               <p class="kpi-desc">기존 단기 플랜 대비 가입자 증가</p>
             </div>
-            <div class="kpi">
-              <p class="kpi-value is-text">객단가 정상화 기여</p>
-              <p class="kpi-desc">단기 상품군 객단가 정상화 및 포트폴리오 구조 안정화</p>
-            </div>
+            <p class="kpi-note">상위 가격대 선택지 추가로 상품 포트폴리오 확대</p>
           </div>
         </div>
       </div>
@@ -288,7 +286,6 @@ body:hover .hint { opacity: .6; }
     </div>
 
     <footer class="slide-foot">
-      <span>김현아 · E-commerce Business Operations Portfolio</span>
       <span class="page num">04 <span class="total">/ 14</span></span>
     </footer>
   </section>
@@ -306,7 +303,6 @@ body:hover .hint { opacity: .6; }
       <div class="main">
         <div class="ba">
           <!-- 헤더 -->
-          <div class="ba-head"></div>
           <div class="ba-head before">
             <span class="ba-tag">BEFORE</span>
             <span class="ba-name">ㅎㅎ특가<span class="since num">2020.01–</span></span>
@@ -317,23 +313,18 @@ body:hover .hint { opacity: .6; }
             <span class="ba-name">브랜드데이<span class="since num">2023.08–</span></span>
           </div>
 
-          <!-- 행 1 -->
-          <div class="ba-key">노출</div>
+          <!-- 행: Before → After (em = 핵심 변화) -->
           <div class="ba-before">장기 운영으로 브랜드 단독 노출 효과 감소</div>
           <div class="ba-arrow">→</div>
-          <div class="ba-after after">브랜드 집중형 단독 포맷</div>
+          <div class="ba-after"><em>브랜드 집중형</em> 단독 포맷</div>
 
-          <!-- 행 2 -->
-          <div class="ba-key">혜택 메시지</div>
           <div class="ba-before">특가 중심이라 브랜드 메시지 전달 한계</div>
           <div class="ba-arrow">→</div>
-          <div class="ba-after after">할인쿠폰 중심으로 혜택 메시지 명확화</div>
+          <div class="ba-after"><em>할인쿠폰 중심</em>으로 혜택 메시지 명확화</div>
 
-          <!-- 행 3 -->
-          <div class="ba-key">쿠폰 비용</div>
           <div class="ba-before ba-empty">—</div>
           <div class="ba-arrow">→</div>
-          <div class="ba-after after is-last">수익률을 고려한 쿠폰 비용 구조 설계</div>
+          <div class="ba-after"><em>수익률</em>을 고려한 쿠폰 비용 구조 설계</div>
         </div>
 
         <div class="result-08">
@@ -343,7 +334,6 @@ body:hover .hint { opacity: .6; }
             <p class="kpi-desc">브랜드데이 런칭 초기 매출</p>
           </div>
           <div class="r-cases">
-            <p class="label">&nbsp;</p>
             <h4>브랜드 단독 프로모션 운영 브랜드 거래액 성장 사례</h4>
             <div class="cases">
               <div><p class="case-val num">+505%</p><p class="case-name">랭킹닭컴</p></div>
@@ -376,7 +366,6 @@ body:hover .hint { opacity: .6; }
     </div>
 
     <footer class="slide-foot">
-      <span>김현아 · E-commerce Business Operations Portfolio</span>
       <span class="page num">08 <span class="total">/ 14</span></span>
     </footer>
   </section>
