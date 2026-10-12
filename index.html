@@ -195,6 +195,230 @@ p, li, h2, h3, h4 { text-wrap: pretty; }
 .s08 .screens { flex: 1; display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; min-height: 0; }
 .s08 .screen-frame { padding: 20px; }
 
+
+/* =========================================================
+   공통 보조 컴포넌트 (01–14 공용)
+   ========================================================= */
+.sub { font-size: var(--fs-body); color: var(--text-body); line-height: 1.5; }
+.list li {
+  font-size: var(--fs-body); color: var(--text-body); line-height: 1.5;
+  padding-left: 14px; position: relative;
+}
+.list li + li { margin-top: 8px; }
+.list li::before { content: "·"; position: absolute; left: 0; }
+.list li ul { margin-top: 6px; }
+.list li li + li { margin-top: 4px; }
+.kpi-value.xl { font-size: 72px; line-height: 1.05; }
+.kpi-value.is-key { color: var(--accent); }
+.val-md { font-size: 44px; font-weight: 700; line-height: 1.1; }
+.divider { border-top: var(--line); }
+.screen-frame.tight { padding: 16px; }
+.screen-frame img.cover { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.screen-row { display: grid; column-gap: 20px; min-height: 0; }
+
+/* 공통: 가로 Process 트랙 (04와 동일한 선·화살표 규칙) */
+.track { display: grid; }
+.track .step h3 { font-size: 24px; }
+
+/* =========================================================
+   01 — Cover
+   ========================================================= */
+.s01 { justify-content: space-between; }
+.cover-label { font-size: var(--fs-meta); font-weight: 600; color: var(--text-body); letter-spacing: 0.06em; }
+.cover-main { margin-top: auto; margin-bottom: 120px; }
+.cover-name { font-size: 88px; font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 36px; }
+.cover-intro { font-size: 32px; font-weight: 500; line-height: 1.55; max-width: 1180px; letter-spacing: -0.02em; }
+.cover-contact { padding-top: 28px; border-top: var(--line); font-size: var(--fs-body); color: var(--text-body); margin-right: 160px; }
+
+/* =========================================================
+   02 — Career at a Glance
+   ========================================================= */
+.s02 .slide-body { grid-template-columns: 1fr 700px; column-gap: 88px; }
+.s02 .left { display: flex; flex-direction: column; min-height: 0; }
+.timeline { position: relative; }
+.timeline::before { content: ""; position: absolute; left: 5px; top: 14px; bottom: 14px; border-left: 2px solid var(--surface); }
+.tl-row { position: relative; padding-left: 40px; display: grid; grid-template-columns: 250px 1fr; column-gap: 24px; }
+.tl-row + .tl-row { margin-top: 40px; }
+.tl-row::before { content: ""; position: absolute; left: 0; top: 9px; width: 12px; height: 12px; border-radius: 50%; background: var(--text-main); }
+.tl-period { font-size: var(--fs-body); font-weight: 600; line-height: 1.4; }
+.tl-co { font-size: var(--fs-h3); font-weight: 700; line-height: 1.35; letter-spacing: -0.02em; }
+.tl-co .role { font-size: var(--fs-body); font-weight: 500; color: var(--text-body); margin-left: 10px; letter-spacing: 0; }
+.tl-did { font-size: var(--fs-body); color: var(--text-body); line-height: 1.5; margin-top: 8px; }
+.profile { margin-top: auto; padding-top: 28px; border-top: var(--line); display: grid; grid-template-columns: 150px 1fr; row-gap: 10px; font-size: var(--fs-body); line-height: 1.45; }
+.profile dt { font-size: var(--fs-label); font-weight: 600; letter-spacing: 0.06em; color: var(--text-body); padding-top: 4px; }
+.profile dd { color: var(--text-main); }
+.numbers .n-row { display: grid; grid-template-columns: 270px 1fr; align-items: center; padding: 14px 0; }
+.numbers .n-row + .n-row { border-top: var(--line); }
+.numbers .n-row:first-of-type { padding-top: 0; }
+.numbers .kpi-value { font-size: 60px; }
+.numbers .n-desc { font-size: var(--fs-body); color: var(--text-body); line-height: 1.45; }
+
+/* =========================================================
+   03 — How I Operate (매트릭스)
+   ========================================================= */
+.s03 .slide-body { grid-template-rows: auto 1fr; row-gap: 36px; }
+.matrix { display: grid; grid-template-columns: 340px repeat(5, 1fr); align-content: start; }
+.matrix > div { padding: 0 20px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.matrix > .m-case { justify-content: flex-start; text-align: left; padding-left: 0; }
+.matrix .m-head { flex-direction: column; justify-content: flex-start; padding-top: 16px; padding-bottom: 16px; border-bottom: 2px solid var(--text-main); }
+.matrix .m-head.m-case { align-items: flex-start; }
+.matrix .m-head b { font-size: 24px; font-weight: 700; display: block; margin-bottom: 6px; }
+.matrix .m-head span { font-size: var(--fs-body); color: var(--text-body); line-height: 1.35; }
+.matrix .m-cell, .matrix .m-case { height: 47px; border-bottom: var(--line); font-size: var(--fs-body); }
+.matrix .m-case .no { color: var(--text-body); width: 42px; display: inline-block; }
+.matrix .dot { width: 14px; height: 14px; border-radius: 50%; background: var(--text-main); }
+.matrix .is-key { background: var(--accent-light); }
+.matrix .m-head.is-key { border-radius: var(--radius) var(--radius) 0 0; }
+.matrix .m-head.is-key b { color: var(--accent); }
+
+/* =========================================================
+   05 — 시즌 프로모션 (세로 순환 Process)
+   ========================================================= */
+.s05 .slide-body { grid-template-columns: 1fr 600px; column-gap: 80px; }
+.s05 .left, .s05 .right { display: flex; flex-direction: column; min-height: 0; }
+.cycle { position: relative; padding-left: 56px; }
+.cycle-loop {                       /* 05 → 01 되돌아가는 선 */
+  position: absolute; left: 0; top: 13px; bottom: 13px; width: 40px;
+  border: 2px solid var(--text-body); border-right: 0;
+}
+.cycle-loop::after {                /* 01로 들어가는 화살촉 */
+  content: ""; position: absolute; right: 2px; top: -6px; width: 10px; height: 10px;
+  border-top: 2px solid var(--text-body); border-right: 2px solid var(--text-body); transform: rotate(45deg);
+}
+.cycle > li { position: relative; display: grid; grid-template-columns: 52px 260px 1fr; padding-bottom: 34px; }
+.cycle > li::after {                /* 다음 단계로 내려가는 선 */
+  content: ""; position: absolute; left: 12px; top: 34px; bottom: 6px; border-left: 2px solid var(--text-main);
+}
+.cycle > li::before {
+  content: ""; position: absolute; left: 8px; bottom: 7px; width: 10px; height: 10px;
+  border-right: 2px solid var(--text-main); border-bottom: 2px solid var(--text-main); transform: rotate(45deg);
+}
+.cycle .c-no { font-size: 22px; font-weight: 700; line-height: 30px; }
+.cycle h3 { font-size: 24px; font-weight: 700; line-height: 30px; letter-spacing: -0.02em; }
+.cycle .list li:first-child { line-height: 30px; }
+.cycle .c-return { padding-bottom: 0; display: block; height: 26px; }
+.cycle .c-return::after, .cycle .c-return::before { display: none; }
+.cycle .c-return span { font-size: var(--fs-label); font-weight: 600; color: var(--text-body); letter-spacing: 0.02em; line-height: 26px; }
+.s05 .sec-kpis { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: 28px; padding-top: 28px; border-top: var(--line); }
+.s05 .screen-row { flex: 1; margin-top: 36px; grid-template-columns: 1fr 1fr; }
+
+/* =========================================================
+   06 — 럭키딜 (문제 → 분석 → 실행 → 결과)
+   ========================================================= */
+.s06 .slide-body { grid-template-columns: 1fr 340px; column-gap: 72px; }
+.s06 .main { display: flex; flex-direction: column; min-height: 0; }
+.chain { display: grid; grid-template-columns: 250px 64px 270px 64px 1fr; align-items: start; }
+.chain .ph { padding-top: 18px; border-top: 2px solid var(--text-main); }
+.chain .ph h3 { font-size: var(--fs-h3); font-weight: 700; margin-bottom: 16px; }
+.chain .ph.is-main { border-top-width: 2px; }
+.chain .arrow { font-size: 28px; color: var(--text-main); text-align: center; padding-top: 18px; line-height: 34px; }
+.s06 .result { margin-top: auto; padding-top: 36px; border-top: var(--line); display: grid; grid-template-columns: auto auto 1fr; column-gap: 72px; align-items: end; }
+.s06 .result .note { font-size: var(--fs-body); color: var(--text-main); font-weight: 600; padding-bottom: 8px; }
+
+/* =========================================================
+   07 — 주간 봉차장 (Before → After + KPI)
+   ========================================================= */
+.s07 .slide-body { grid-template-columns: 1fr 460px; column-gap: 80px; }
+.s07 .main, .s07 .right { display: flex; flex-direction: column; min-height: 0; }
+.ba2 { display: grid; grid-template-columns: 130px 0.9fr 64px 1.2fr; margin-top: 32px; }
+.ba2 > div { padding: 18px 0; display: flex; align-items: center; border-top: var(--line); text-wrap: balance; }
+.ba2 .h { border-top: 0; padding: 0 0 12px; }
+.ba2 .key { font-size: var(--fs-body); font-weight: 600; color: var(--text-main); }
+.ba2 .ba-before, .ba2 .ba-after { padding-right: 16px !important; padding-left: 0 !important; }
+.ba2 .ba-after { font-size: 22px; }
+.ba2 .ba-arrow { justify-content: center; }
+.s07 .screen-row { flex: 1; margin-top: 32px; grid-template-columns: 1fr 1fr 1fr; }
+.s07 .right .kpi + .kpi { margin-top: 28px; padding-top: 28px; }
+.s07 .right .kpi-note { margin-top: 28px; }
+
+/* =========================================================
+   09 — 홈페이지 리뉴얼 (퍼널)
+   ========================================================= */
+.s09 .slide-body { grid-template-columns: 1fr 500px; column-gap: 72px; }
+.s09 .main { display: flex; flex-direction: column; min-height: 0; }
+.problem-inline { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+.funnel { margin-top: 36px; display: grid; grid-template-columns: 220px 1fr; row-gap: 10px; column-gap: 32px; align-items: center; }
+.funnel .fstage { display: flex; justify-content: center; }
+.funnel .fstage span {
+  display: block; background: var(--surface); border-radius: 4px; text-align: center;
+  font-size: var(--fs-body); font-weight: 700; padding: 12px 0;
+}
+.funnel .w1 { width: 220px; } .funnel .w2 { width: 188px; } .funnel .w3 { width: 156px; } .funnel .w4 { width: 124px; }
+.funnel .act { font-size: var(--fs-body); color: var(--text-body); line-height: 1.45; }
+.s09 .result { margin-top: auto; padding-top: 32px; border-top: var(--line); display: grid; grid-template-columns: auto auto auto 1fr; column-gap: 56px; align-items: end; }
+.s09 .result .foot { font-size: var(--fs-caption); color: var(--text-body); padding-bottom: 6px; text-align: right; white-space: nowrap; }
+.s09 .screen-row { flex: 1; grid-template-columns: 1fr 1fr; }
+
+/* =========================================================
+   10 — 제휴 프로모션 (2단 비교)
+   ========================================================= */
+.s10 .slide-body { grid-template-rows: auto 1fr; }
+.cmp { display: grid; grid-template-columns: 200px 1fr 1fr; column-gap: 56px; }
+.cmp > * { padding: 20px 0; border-top: var(--line); }
+.cmp .h { border-top: 0; padding-top: 0; padding-bottom: 16px; border-bottom: 2px solid var(--text-main); }
+.cmp .h ~ .r1 { border-top: 0; }
+.cmp .h b { font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
+.cmp .h .since { font-size: var(--fs-body); color: var(--text-body); margin-left: 12px; }
+.cmp .key { font-size: var(--fs-body); font-weight: 600; color: var(--text-main); }
+.cmp .txt { font-size: var(--fs-body); color: var(--text-body); line-height: 1.5; }
+.cmp .res { display: grid; grid-template-columns: auto auto; justify-content: start; column-gap: 48px; align-items: end; }
+.cmp .res .more { grid-column: 1 / -1; margin-top: 14px; font-size: var(--fs-body); color: var(--text-body); }
+.s10 .bottom-line { align-self: end; padding-top: 24px; border-top: var(--line); font-size: var(--fs-body); color: var(--text-main); }
+
+/* =========================================================
+   11 — 신규 서비스 320건
+   ========================================================= */
+.s11 .slide-body { grid-template-columns: 340px 1fr; column-gap: 88px; }
+.s11 .kcol .kpi + .kpi { margin-top: 28px; padding-top: 28px; }
+.s11 .main { display: flex; flex-direction: column; min-height: 0; }
+.s11 .process { grid-template-columns: repeat(5, 1fr); margin-top: 36px; }
+.s11 .step h3 { margin-bottom: 6px; }
+.s11 .step .sub { font-size: var(--fs-body); }
+.s11 .notes { margin-top: 28px; }
+.s11 .bottom { flex: 1; min-height: 0; margin-top: 32px; padding-top: 28px; border-top: var(--line); display: grid; grid-template-columns: 1fr 460px; column-gap: 48px; }
+.logos { display: grid; grid-template-columns: repeat(4, auto); justify-content: start; align-items: center; column-gap: 40px; margin-top: 24px; }
+.logos img { height: 36px; width: auto; display: block; }
+.logos img.tall { height: 52px; }
+
+/* =========================================================
+   12 — 운영 자동화
+   ========================================================= */
+.s12 .slide-body { grid-template-rows: auto 1fr auto; }
+.s12 .process { grid-template-columns: repeat(5, 1fr); }
+.s12 .step h3 { font-size: 24px; margin-bottom: 0; }
+.s12 .mid { display: grid; grid-template-columns: 380px 1fr 520px; column-gap: 56px; margin-top: 32px; padding-top: 28px; border-top: var(--line); min-height: 0; }
+.s12 .mid .screen-row { grid-template-columns: 200px 1fr; }
+.s12 .bottom { display: grid; grid-template-columns: 380px 1fr; column-gap: 56px; padding-top: 24px; border-top: var(--line); margin-top: 24px; align-items: end; }
+.s12 .bottom .list li { color: var(--text-main); }
+.s12 .bottom .one-line { margin-top: 12px; font-size: var(--fs-body); color: var(--text-body); }
+
+/* =========================================================
+   13 — 운영 데이터 관리 (Before → After)
+   ========================================================= */
+.s13 .slide-body { grid-template-columns: 1fr 520px; column-gap: 80px; }
+.s13 .right { display: flex; flex-direction: column; min-height: 0; }
+.s13 .ba { align-content: start; }
+.s13 .ba > div { padding: 22px 0; }
+.s13 .ba .ba-head { padding: 18px 0 16px; }
+.s13 .ba .ba-head.after { padding: 18px 28px 16px; }
+.s13 .ba-after { font-size: 22px; }
+.s13 .ba-before { font-size: 22px; }
+.s13 .right .list { margin-top: 24px; }
+.s13 .screen-row { flex: 1; margin-top: 32px; grid-template-columns: 1fr 1fr; }
+
+/* =========================================================
+   14 — How I Work
+   ========================================================= */
+.s14 .slide-body { grid-template-rows: 1fr auto; }
+.s14 .process { align-self: center; margin-bottom: 80px; }
+.s14 .step h3 { font-size: 28px; margin-bottom: 18px; }
+.s14 .step { padding-right: 56px; }
+.s14 .step-track::after { right: -38px; }
+.s14 .step-track::before { right: -37px; }
+.s14 .contact { align-self: end; padding-top: 32px; border-top: var(--line); display: flex; align-items: baseline; column-gap: 32px; }
+.s14 .contact b { font-size: 30px; font-weight: 700; }
+.s14 .contact span { font-size: 24px; color: var(--text-body); }
+
 /* ---------- 조작 힌트 (슬라이드 외부, 인쇄/캡처 시 영향 없음) ---------- */
 .hint {
   position: fixed; right: 16px; bottom: 12px; font-size: 12px; color: var(--text-body);
@@ -206,6 +430,182 @@ body:hover .hint { opacity: .6; }
 <body>
 
 <div class="stage" id="stage">
+
+  <!-- ===================================================
+       01 · Cover
+       =================================================== -->
+  <section class="slide s01" data-page="01">
+    <p class="cover-label">E-COMMERCE BUSINESS OPERATIONS PORTFOLIO</p>
+    <div class="cover-main">
+      <h1 class="cover-name">김현아</h1>
+      <p class="cover-intro">매출·마진·전환 데이터를 보고 상품과 프로모션을 운영하고,<br>반복되는 운영 구조까지 개선해 왔습니다.</p>
+    </div>
+    <p class="cover-contact num">010.8020.6186<span class="sep" style="margin:0 14px">·</span>hyuna95728@gmail.com</p>
+    <footer class="slide-foot">
+      <span class="page num">01 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       02 · Career at a Glance
+       =================================================== -->
+  <section class="slide s02" data-page="02">
+    <header class="slide-head">
+      <p class="meta">CAREER AT A GLANCE</p>
+      <h2 class="title">온라인몰 운영 10년, 운영 실무에서 상품·프로모션 기획과<br>운영 구조 개선으로 역할을 넓혀 왔습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="left">
+        <p class="label">TIMELINE</p>
+        <div class="timeline">
+          <div class="tl-row">
+            <p class="tl-period num">2024.03 – 2025.08</p>
+            <div>
+              <p class="tl-co">ASSISTCARD KOREA<span class="role">매니저</span></p>
+              <p class="tl-did">온라인몰 운영 · 상품 포트폴리오 · 가격·혜택 구조 · 제휴 프로모션 · 전환 동선 개선</p>
+            </div>
+          </div>
+          <div class="tl-row">
+            <p class="tl-period num">2017.04 – 2024.01</p>
+            <div>
+              <p class="tl-co">㈜현대이지웰<span class="role">선임</span></p>
+              <p class="tl-did">복지몰 신규 서비스 런칭 · 시즌/광고형 프로모션 · 운영 자동화</p>
+            </div>
+          </div>
+          <div class="tl-row">
+            <p class="tl-period num">2015.04 – 2017.04</p>
+            <div>
+              <p class="tl-co">㈜피엔에이링크 (이지웰 파견)<span class="role">전임</span></p>
+              <p class="tl-did">1,800개 복지몰 전 카테고리 운영 · 140여 제휴사 정산</p>
+            </div>
+          </div>
+        </div>
+
+        <dl class="profile">
+          <dt>EDUCATION</dt>
+          <dd>동양미래대학교 경영학과 졸업 · 한국방송통신대학교 경영학과 재학</dd>
+          <dt>TOOLS</dt>
+          <dd>Excel · PowerPoint · Figma · Kakao Biz Center · Meta Ads Manager</dd>
+        </dl>
+      </div>
+
+      <div class="numbers">
+        <p class="label">KEY NUMBERS</p>
+        <div class="n-row">
+          <p class="kpi-value num is-key">29%</p>
+          <p class="n-desc">신규 상위 플랜, 출시 3개월 내 상품군 매출 비중</p>
+        </div>
+        <div class="n-row">
+          <p class="kpi-value num">+122%</p>
+          <p class="n-desc">리뉴얼 프로모션 신규 회원 (전년 대비)</p>
+        </div>
+        <div class="n-row">
+          <p class="kpi-value num">약 6배</p>
+          <p class="n-desc">광고형 정기 프로모션 수익 (초기 대비)</p>
+        </div>
+        <div class="n-row">
+          <p class="kpi-value num">320건</p>
+          <p class="n-desc">1년간 신규 서비스 오픈 (목표 대비 156%)</p>
+        </div>
+        <div class="n-row">
+          <p class="kpi-value num">주 8시간</p>
+          <p class="n-desc">운영 자동화로 줄인 반복 업무</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">02 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       03 · How I Operate
+       =================================================== -->
+  <section class="slide s03" data-page="03">
+    <header class="slide-head">
+      <p class="meta">HOW I OPERATE</p>
+      <h2 class="title">매출·수익성·전환·운영 효율을 기준으로 문제를 해결해 왔습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <p class="sub">하나의 숫자만 보지 않고, 매출이 오를 때 비용과 운영 부담이 어떻게 움직이는지 함께 확인했습니다.</p>
+
+      <div class="matrix">
+        <div class="m-head m-case"><span>사례</span></div>
+        <div class="m-head"><b>매출</b><span>거래액·매출 비중</span></div>
+        <div class="m-head is-key"><b>수익성</b><span>마진율·프로모션 비용·광고 수익</span></div>
+        <div class="m-head"><b>전환</b><span>가입·주문 전환</span></div>
+        <div class="m-head"><b>운영 효율</b><span>업무 시간·오류</span></div>
+        <div class="m-head"><b>시스템 개선</b><span>자동화·기능 개선</span></div>
+        <div class="m-case"><span class="no num">04</span>플래티넘 플랜</div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell is-key"><span class="dot"></span></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-case"><span class="no num">05</span>시즌 프로모션</div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell is-key"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-case"><span class="no num">06</span>럭키딜</div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell is-key"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-case"><span class="no num">07</span>주간 봉차장</div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell is-key"><span class="dot"></span></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-case"><span class="no num">08</span>브랜드데이</div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell is-key"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"></div>
+        <div class="m-case"><span class="no num">09</span>홈페이지 리뉴얼</div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell is-key"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-case"><span class="no num">10</span>제휴 프로모션</div>
+        <div class="m-cell"></div>
+        <div class="m-cell is-key"><span class="dot"></span></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-case"><span class="no num">11</span>신규 서비스 320건</div>
+        <div class="m-cell"></div>
+        <div class="m-cell is-key"></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-case"><span class="no num">12</span>운영 자동화</div>
+        <div class="m-cell"></div>
+        <div class="m-cell is-key"></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-case"><span class="no num">13</span>운영 데이터 관리</div>
+        <div class="m-cell"></div>
+        <div class="m-cell is-key"></div>
+        <div class="m-cell"></div>
+        <div class="m-cell"><span class="dot"></span></div>
+        <div class="m-cell"><span class="dot"></span></div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">03 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
 
   <!-- ===================================================
        04 · 플래티넘 플랜
@@ -224,8 +624,8 @@ body:hover .hint { opacity: .6; }
             <div class="step-track"><span class="step-no num">01</span></div>
             <h3>객단가 하락</h3>
             <ul>
-              <li>가격 인하 이후 객단가 하락으로 거래액 성장 정체</li>
-              <li>단기 상품군 내 프리미엄 선택지 부재</li>
+              <li>가격 인하 이후 객단가가 떨어지면서 거래액 성장이 정체됨</li>
+              <li>단기 상품군에 상위 수요를 받을 프리미엄 선택지가 없음</li>
             </ul>
           </li>
           <li class="step">
@@ -256,20 +656,20 @@ body:hover .hint { opacity: .6; }
 
         <div class="result-04">
           <div class="chart">
-            <p class="chart-title">단기 플랜 상품군 내 플래티넘 플랜 매출 비중</p>
-            <p class="chart-sub">출시 3개월 내 상품군 상위권 진입</p>
+            <p class="chart-title">상품군 내 매출 비중</p>
+            <p class="chart-sub">29%: 3개월, 상위권 진입</p>
             <div class="bars">
               <div class="bar-col"><span class="bar-val num">0%</span><div class="bar" style="height:0"></div></div>
               <div class="bar-col"><span class="bar-val num">20%</span><div class="bar" style="height:83px"></div></div>
               <div class="bar-col is-key"><span class="bar-val num">29%</span><div class="bar" style="height:120px"></div></div>
             </div>
-            <div class="bar-x"><span>출시 전</span><span>출시 첫 달</span><span>출시 3개월 내</span></div>
+            <div class="bar-x"><span>출시 전</span><span>출시 첫 달</span><span>3개월</span></div>
           </div>
 
           <div class="kpis">
             <div class="kpi">
               <p class="kpi-value num">+22%</p>
-              <p class="kpi-desc">기존 단기 플랜 대비 가입자 증가</p>
+              <p class="kpi-desc">가입자 (기존 단기 플랜 대비)</p>
             </div>
             <p class="kpi-note">상위 가격대 선택지 추가로 상품 포트폴리오 확대</p>
           </div>
@@ -281,12 +681,212 @@ body:hover .hint { opacity: .6; }
         <div class="screen-frame">
           <img src="assets/04-platinum-plan-select.png" alt="어시스트카드 단기 플랜 선택 화면. 슬림·베이직·프리미엄·플래티넘 플랜이 가격순으로 나열되어 있다.">
         </div>
-        <figcaption class="screen-caption">단기 플랜 선택 화면 — 최상위 가격대 플래티넘 플랜 추가</figcaption>
+        <figcaption class="screen-caption">플래티넘 플랜 화면</figcaption>
       </figure>
     </div>
 
     <footer class="slide-foot">
       <span class="page num">04 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       05 · 시즌 프로모션
+       =================================================== -->
+  <section class="slide s05" data-page="05">
+    <header class="slide-head">
+      <p class="meta">현대이지웰<span class="sep">·</span>2018.04–2024.01<span class="sep">·</span>기여도 100%</p>
+      <h2 class="title">시즌 프로모션은 쿠폰·할인·경품 비용과 예상 수익률을 먼저 계산한 뒤<br>운영안을 정했습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="left">
+        <p class="sub">설·추석·가정의 달 등 주요 시즌을 중심으로 연 10~15건을 운영했습니다.<br>성과는 매출과 비용을 함께 놓고 판단했습니다.</p>
+        <p class="label" style="margin-top:40px">PROCESS</p>
+        <ol class="cycle">
+          <div class="cycle-loop" aria-hidden="true"></div>
+          <li>
+            <span class="c-no num">01</span><h3>비용 산출</h3>
+            <ul class="list"><li>쿠폰·할인·경품 등 프로모션 비용 계산</li></ul>
+          </li>
+          <li>
+            <span class="c-no num">02</span><h3>예상 수익률 검토</h3>
+            <ul class="list"><li>예상 매출 대비 비용으로 수익률 확인</li></ul>
+          </li>
+          <li>
+            <span class="c-no num">03</span><h3>운영안 확정</h3>
+            <ul class="list"><li>시즌·트렌드에 맞춘 테마와 혜택 구성 결정</li></ul>
+          </li>
+          <li>
+            <span class="c-no num">04</span><h3>운영</h3>
+            <ul class="list"><li>기획전 오픈, 소재 기획·카피라이팅</li></ul>
+          </li>
+          <li>
+            <span class="c-no num">05</span><h3>성과 분석 및<br>다음 프로모션 반영</h3>
+            <ul class="list">
+              <li>매출과 비용을 함께 보고 판단</li>
+              <li>예: 실구매율 분석 후 경품 중심에서 할인쿠폰 중심으로 변경</li>
+            </ul>
+          </li>
+          <li class="c-return"><span>05 → 01</span></li>
+        </ol>
+      </div>
+
+      <div class="right">
+        <p class="label">RESULT</p>
+        <div class="kpi">
+          <p class="kpi-value xl num is-key">+25~48%</p>
+          <p class="kpi-desc">시즌 프로모션 거래액 (전년 대비)</p>
+        </div>
+        <div class="sec-kpis">
+          <div>
+            <p class="val-md num">+59%</p>
+            <p class="kpi-desc">트렌드 기획전<br>(언택트·집콕)</p>
+          </div>
+          <div>
+            <p class="val-md num">+130~880%</p>
+            <p class="kpi-desc">주요 콘텐츠<br>(홈카페, e-book 등)</p>
+          </div>
+        </div>
+        <div class="screen-row">
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/05-chuseok.png" alt="추석 기획전 화면"></div>
+            <figcaption class="screen-caption">추석 기획전</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/05-newyear.png" alt="신년 기획전 화면"></div>
+            <figcaption class="screen-caption">신년 기획전</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">05 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       06 · 럭키딜
+       =================================================== -->
+  <section class="slide s06" data-page="06">
+    <header class="slide-head">
+      <p class="meta">현대이지웰<span class="sep">·</span>2023.09–2023.11</p>
+      <h2 class="title">구매와 이벤트 참여를 직접 연결한 구조로 바꿔,<br>주문 전환율을 26% 높였습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="main">
+        <div class="chain">
+          <div class="ph">
+            <h3>문제</h3>
+            <ul class="list"><li>경품 이벤트가 실제 구매로 이어지지 않음</li></ul>
+          </div>
+          <div class="arrow">→</div>
+          <div class="ph">
+            <h3>분석</h3>
+            <ul class="list"><li>참여·구매 데이터를 보고 경품 구성과 참여 조건 점검</li></ul>
+          </div>
+          <div class="arrow">→</div>
+          <div class="ph is-main">
+            <h3>실행</h3>
+            <ul class="list">
+              <li>구매 건당 응모권을 지급하고, 구매 횟수가 늘수록 당첨 확률이 오르는 구조 설계</li>
+              <li>참여 데이터를 기준으로 경품 구성 조정</li>
+              <li>주요 카테고리 기획전·신규 제휴사 상품 홍보와 연계해 노출 확대</li>
+              <li>개발 부서와 협의해 응모권 발급·응모 페이지 및 데이터 연동 구조 구축</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="result">
+          <div>
+            <p class="label">RESULT</p>
+            <p class="kpi-value xl num is-key">+26%</p>
+            <p class="kpi-desc">주문 전환율 (시즌 프로모션 대비)</p>
+          </div>
+          <div>
+            <p class="kpi-value num">+19%</p>
+            <p class="kpi-desc">거래액 (전년 대비)</p>
+          </div>
+          <p class="note">주요 카테고리 PV 상승</p>
+        </div>
+      </div>
+
+      <figure class="screen">
+        <p class="label">SCREEN</p>
+        <div class="screen-frame tight"><img src="assets/06-luckydeal.png" alt="Lucky Deal 프로모션 화면"></div>
+        <figcaption class="screen-caption">Lucky Deal</figcaption>
+      </figure>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">06 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       07 · 주간 봉차장
+       =================================================== -->
+  <section class="slide s07" data-page="07">
+    <header class="slide-head">
+      <p class="meta">현대이지웰<span class="sep">·</span>2019.01–2024.01<span class="sep">·</span>기여도 90%</p>
+      <h2 class="title">모바일 리뉴얼 후 노출이 떨어진 광고 구좌를 메인 상단으로 옮겨,<br>광고 매출 성장을 다시 끌어올렸습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="main">
+        <p class="sub">광고 수익을 꾸준히 낼 정기 프로모션 구조가 없어, 매주 운영하는 특가 광고 프로모션을 설계했습니다.</p>
+
+        <div class="ba2">
+          <div class="h"></div>
+          <div class="h"><span class="ba-tag">BEFORE</span></div>
+          <div class="h"></div>
+          <div class="h"><span class="ba-tag">AFTER</span></div>
+
+          <div class="key">노출</div>
+          <div class="ba-before">모바일 리뉴얼 후 광고 구좌 노출 위치 하락</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">내부 보고 후 마케팅팀과 협의해 메인 상단으로 재배치</div>
+
+          <div class="key">상품 선정</div>
+          <div class="ba-before">광고 상품이 늘어 성과 관리가 필요</div>
+          <div class="ba-arrow">→</div>
+          <div class="ba-after">MD·광고팀과 협업해 시즌·트렌드·성장 가능성 기준으로 큐레이션</div>
+        </div>
+
+        <div class="screen-row">
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/07-bongchajang-main.png" alt="주간 봉차장 메인 화면"></div>
+            <figcaption class="screen-caption">주간 봉차장 메인</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/07-ad-slot-top.png" alt="메인 상단 광고 구좌 노출 화면 (상)"></div>
+            <figcaption class="screen-caption">메인 상단 구좌 (상)</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/07-ad-slot-bottom.png" alt="메인 상단 광고 구좌 노출 화면 (하)"></div>
+            <figcaption class="screen-caption">메인 상단 구좌 (하)</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="right">
+        <p class="label">RESULT</p>
+        <div class="kpi">
+          <p class="kpi-value xl num is-key">약 6배</p>
+          <p class="kpi-desc">광고 수익·거래 실적 (초기 대비)</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-value num">연 +97~104%</p>
+          <p class="kpi-desc">광고 매출 (전년 대비)</p>
+        </div>
+        <p class="kpi-note">PV·전환율 개선으로 거래 규모 안정화</p>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">07 <span class="total">/ 14</span></span>
     </footer>
   </section>
 
@@ -318,9 +918,9 @@ body:hover .hint { opacity: .6; }
           <div class="ba-arrow">→</div>
           <div class="ba-after"><em>브랜드 집중형</em> 단독 포맷</div>
 
-          <div class="ba-before">특가 중심이라 브랜드 메시지 전달 한계</div>
+          <div class="ba-before">특가 중심이라 브랜드 메시지 전달이 어려움</div>
           <div class="ba-arrow">→</div>
-          <div class="ba-after"><em>할인쿠폰 중심</em>으로 혜택 메시지 명확화</div>
+          <div class="ba-after"><em>할인쿠폰 중심</em>의 명확한 혜택 메시지</div>
 
           <div class="ba-before ba-empty">—</div>
           <div class="ba-arrow">→</div>
@@ -334,7 +934,7 @@ body:hover .hint { opacity: .6; }
             <p class="kpi-desc">브랜드데이 런칭 초기 매출</p>
           </div>
           <div class="r-cases">
-            <h4>브랜드 단독 프로모션 운영 브랜드 거래액 성장 사례</h4>
+            <h4>주요 브랜드 거래액 성장 사례</h4>
             <div class="cases">
               <div><p class="case-val num">+505%</p><p class="case-name">랭킹닭컴</p></div>
               <div><p class="case-val num">+509%</p><p class="case-name">마이셰프</p></div>
@@ -367,6 +967,400 @@ body:hover .hint { opacity: .6; }
 
     <footer class="slide-foot">
       <span class="page num">08 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       09 · 홈페이지 리뉴얼
+       =================================================== -->
+  <section class="slide s09" data-page="09">
+    <header class="slide-head">
+      <p class="meta">ASSISTCARD<span class="sep">·</span>2024.11–2025.02<span class="sep">·</span>기여도 100%</p>
+      <h2 class="title">리뉴얼 시점에 쿠폰 정책과 가입 동선을 함께 바꿔,<br>신규 회원을 전년 대비 122% 늘렸습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="main">
+        <p class="label">PROBLEM</p>
+        <ul class="list problem-inline">
+          <li>플랜별 쿠폰 정책이 흩어져 혜택이 잘 보이지 않음</li>
+          <li style="margin-top:0">랜딩 페이지와 가입 동선에 전환을 유도하는 요소가 부족함</li>
+        </ul>
+
+        <div class="funnel">
+          <div class="fstage"><span class="w1">인지</span></div>
+          <p class="act">리뉴얼 메인 이벤트, 대상별(워홀 등) 쿠폰 이벤트</p>
+          <div class="fstage"><span class="w2">유입</span></div>
+          <p class="act">랜딩 페이지 구성 정비</p>
+          <div class="fstage"><span class="w3">가입</span></div>
+          <p class="act">가입 동선·CTA 개선, 플랜별 쿠폰 정책 정리, 쿠폰 발급을 수동에서 자동으로 전환</p>
+          <div class="fstage"><span class="w4">재가입</span></div>
+          <p class="act">단계별 KPI 설계 및 지표 모니터링</p>
+        </div>
+
+        <div class="result">
+          <div>
+            <p class="label">RESULT</p>
+            <p class="kpi-value xl num is-key">+122%</p>
+            <p class="kpi-desc">신규 회원</p>
+          </div>
+          <div>
+            <p class="val-md num">+429%</p>
+            <p class="kpi-desc">단기 플랜 가입자 / 거래액 +40%</p>
+          </div>
+          <div>
+            <p class="val-md num">+70%</p>
+            <p class="kpi-desc">워홀 플랜 가입자 / 거래액 +31%</p>
+          </div>
+          <p class="foot">모두 전년 대비</p>
+        </div>
+      </div>
+
+      <div class="screen">
+        <p class="label">SCREEN</p>
+        <div class="screen-row">
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/09-renewal-main.png" alt="리뉴얼 메인 이벤트 페이지"></div>
+            <figcaption class="screen-caption">리뉴얼 메인 이벤트</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/09-workingholiday.png" alt="워홀 대상 쿠폰 이벤트 페이지"></div>
+            <figcaption class="screen-caption">워홀 이벤트</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">09 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       10 · 제휴 프로모션
+       =================================================== -->
+  <section class="slide s10" data-page="10">
+    <header class="slide-head">
+      <p class="meta">ASSISTCARD<span class="sep">·</span>2024.09–2025.05</p>
+      <h2 class="title">바터 제휴로 확보한 혜택을,<br>발송 구조를 바꿔 가입·구매 전환으로 연결했습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="cmp">
+        <div class="h"></div>
+        <div class="h"><b>Wavve</b><span class="since num">2024.09–12</span></div>
+        <div class="h"><b>이심이지</b><span class="since num">2025.02–05</span></div>
+
+        <div class="key r1">확보한 혜택</div>
+        <div class="txt r1">Wavve 3개월 이용권</div>
+        <div class="txt r1">자사 배너 구좌를 제공하고 할인쿠폰을 무상 확보</div>
+
+        <div class="key">제약</div>
+        <div class="txt">혜택을 즉시 지급하기 어려운 발송 제약</div>
+        <div class="txt">일부 국가 한정 혜택, 실시간 발송 불가</div>
+
+        <div class="key">바꾼 구조</div>
+        <ul class="list">
+          <li>플러스친구 추가를 혜택 수령 조건으로 전환</li>
+          <li>이후 쿠폰·경품으로 구매 유도</li>
+          <li>채널톡 일괄 발송, 소진율 관리</li>
+        </ul>
+        <ul class="list">
+          <li>추가 협의로 전 국가에 혜택 확대</li>
+          <li>회원 10%·비회원 5% 차등 혜택</li>
+          <li>개발 협업으로 가입 즉시 실시간 발송</li>
+        </ul>
+
+        <div class="key">결과</div>
+        <div class="res">
+          <div><p class="kpi-value num">+67%</p><p class="kpi-desc">플러스친구 (전월 대비)</p></div>
+          <div><p class="val-md num">87%</p><p class="kpi-desc">쿠폰 소진율</p></div>
+          <p class="more num">거래액 +16% · 가입자 +62% (전년 대비)</p>
+        </div>
+        <div class="res">
+          <div><p class="kpi-value num is-key">46%</p><p class="kpi-desc">전체 가입자 중 이 프로모션으로 유입</p></div>
+          <div><p class="val-md num">+47%</p><p class="kpi-desc">일본 거래액</p></div>
+          <p class="more num">일본 가입자 +28% (전년 대비)</p>
+        </div>
+      </div>
+
+      <p class="bottom-line">수신동의를 하지 않은 고객의 데이터가 빠지는 문제를 발견해 개선안을 제시했습니다.</p>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">10 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       11 · 신규 서비스 320건
+       =================================================== -->
+  <section class="slide s11" data-page="11">
+    <header class="slide-head">
+      <p class="meta">현대이지웰<span class="sep">·</span>2017.04–2018.03<span class="sep">·</span>기여도 80%</p>
+      <h2 class="title">서비스마다 달랐던 오픈 절차를 하나의 기준으로 정리해,<br>1년간 신규 서비스 320건을 열었습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="kcol">
+        <p class="label">RESULT</p>
+        <div class="kpi">
+          <p class="kpi-value xl num is-key">320건</p>
+          <p class="kpi-desc">신규 서비스</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-value num">156%</p>
+          <p class="kpi-desc">목표 대비</p>
+        </div>
+        <div class="kpi">
+          <p class="kpi-value num">85%</p>
+          <p class="kpi-desc">모바일·온라인 UX 동일화율</p>
+        </div>
+      </div>
+
+      <div class="main">
+        <p class="sub">건강관리·자기계발·가족친화·문화여가·생활편의 5개 카테고리를 새로 열면서 진행했습니다.</p>
+        <ol class="process">
+          <li class="step">
+            <div class="step-track"><span class="step-no num">01</span></div>
+            <h3>연동 방식 결정</h3>
+            <p class="sub">(자체 / ASP / API)</p>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">02</span></div>
+            <h3>상품 구성</h3>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">03</span></div>
+            <h3>정책 설정</h3>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">04</span></div>
+            <h3>QA</h3>
+          </li>
+          <li class="step">
+            <div class="step-track"><span class="step-no num">05</span></div>
+            <h3>런칭</h3>
+          </li>
+        </ol>
+        <ul class="list notes">
+          <li>서브메인·구좌·상품 등록 방식 등 운영 구조도 함께 정리</li>
+          <li>모바일 39개 메뉴의 카테고리 UX 정비</li>
+        </ul>
+
+        <div class="bottom">
+          <div>
+            <p class="sub" style="color:var(--text-main)">쿠팡·ABC마트·종근당건강 등 주요 제휴사 포함</p>
+            <div class="logos">
+              <img src="assets/11-logo-coupang.png" alt="쿠팡">
+              <img src="assets/11-logo-abcmart.png" alt="ABC마트" class="tall">
+              <img src="assets/11-logo-chongkundang.png" alt="종근당건강">
+              <img src="assets/11-logo-rankingdak.png" alt="랭킹닭컴">
+            </div>
+          </div>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/11-health-category.png" alt="건강관리 카테고리 화면"></div>
+            <figcaption class="screen-caption">건강관리 카테고리</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">11 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       12 · 운영 자동화
+       =================================================== -->
+  <section class="slide s12" data-page="12">
+    <header class="slide-head">
+      <p class="meta">현대이지웰<span class="sep">·</span>상시<span class="sep">·</span>기여도 95%</p>
+      <h2 class="title">반복 수작업이던 프로모션 상품 등록을 자동화해,<br>주 8시간의 운영 시간을 줄였습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <ol class="process">
+        <li class="step">
+          <div class="step-track"><span class="step-no num">01</span></div>
+          <h3>업무 분석</h3>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">02</span></div>
+          <h3>자동화 대상 선정·<br>우선순위 결정</h3>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">03</span></div>
+          <h3>운영 정책·<br>예외 기준 정의</h3>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">04</span></div>
+          <h3>개발 협업</h3>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">05</span></div>
+          <h3>QA → 매뉴얼·온보딩</h3>
+        </li>
+      </ol>
+
+      <div class="mid">
+        <div>
+          <p class="label">PROBLEM</p>
+          <ul class="list">
+            <li>반복 수작업으로 오류·누락이 생김</li>
+            <li>담당자 경험에 따라 운영 품질이 달라짐</li>
+            <li>업무가 늘면 같은 방식을 유지하기 어려움</li>
+          </ul>
+        </div>
+        <div>
+          <p class="label">이 과정으로 진행한 과제</p>
+          <ul class="list">
+            <li>상품코드 기반 프로모션 상품 자동 등록 시스템: 요건 정의, 테스트 리드</li>
+            <li>RPA 구축: 팀 대표로 참여, 개발팀·경영기획실 사이 실무 커뮤니케이션 담당</li>
+            <li>주문 알림톡 기능 개선</li>
+            <li>e쿠폰 실시간 발송 구조 개선
+              <ul><li>정책 정의, QA 총괄</li><li>MD·AMD 대상 매뉴얼 교육</li></ul>
+            </li>
+          </ul>
+        </div>
+        <div class="screen-row">
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/12-alimtalk.png" alt="주문 알림톡 화면"></div>
+            <figcaption class="screen-caption">주문 알림톡</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/12-auto-register-admin.png" alt="자동 등록 시스템 어드민 화면"></div>
+            <figcaption class="screen-caption">자동 등록 어드민</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="bottom">
+        <div>
+          <p class="kpi-value xl num is-key">8시간</p>
+          <p class="kpi-desc">주간 운영 시간 절감</p>
+        </div>
+        <div>
+          <ul class="list">
+            <li>오류·누락 감소, 알림톡 도입으로 CS 감소</li>
+            <li>개선안을 신규 시스템에 반영해 업무 절차 표준화</li>
+          </ul>
+          <p class="one-line">운영 흐름을 먼저 정리한 뒤 시스템을 설계해, 개발 단계의 예외 처리 리스크를 줄였습니다.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">12 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       13 · 운영 데이터 관리
+       =================================================== -->
+  <section class="slide s13" data-page="13">
+    <header class="slide-head">
+      <p class="meta">ASSISTCARD<span class="sep">·</span>2024.03–2025.07</p>
+      <h2 class="title">흩어져 있던 매출·입금 관리 파일과 노출 기준을 정비해,<br>데이터 정확도를 높이고 주 6시간을 줄였습니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <div class="ba">
+        <div class="ba-head before"><span class="ba-tag">BEFORE</span></div>
+        <div class="ba-head"></div>
+        <div class="ba-head after"><span class="ba-tag">AFTER</span></div>
+
+        <div class="ba-before">매출·입금 관리 파일이 흩어져 데이터 오류와 확인 지연 발생</div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-after">관리 파일을 개편해 데이터 정확도 강화</div>
+
+        <div class="ba-before">제휴사 페이지·메뉴 노출 기준이 없어 운영 편차 발생</div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-after">제휴사·채널·메뉴 위치별 노출 현황판 제작</div>
+
+        <div class="ba-before">메뉴·링크 오류</div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-after">오류 정비 및 모니터링 체계 마련</div>
+
+        <div class="ba-before">쿠폰을 일괄 할인으로만 발행 가능</div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-after">CMS에 상품·플랜별 차등 할인 쿠폰 발행 기능을 요청해 적용</div>
+
+        <div class="ba-before">루틴 업무 누적</div>
+        <div class="ba-arrow">→</div>
+        <div class="ba-after">불필요한 단계를 없애고 업무 흐름 재정리</div>
+      </div>
+
+      <div class="right">
+        <p class="label">RESULT</p>
+        <div class="kpi">
+          <p class="kpi-value xl num is-key">6시간</p>
+          <p class="kpi-desc">주간 운영 시간 절감</p>
+        </div>
+        <ul class="list">
+          <li>노출 정확도와 운영 안정성 향상</li>
+          <li>상품·플랜별 맞춤 할인 설계가 가능해져 전환율 개선에 기여</li>
+        </ul>
+        <div class="screen-row">
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/13-exposure-board.png" alt="노출 현황판 화면"></div>
+            <figcaption class="screen-caption">노출 현황판</figcaption>
+          </figure>
+          <figure class="screen">
+            <div class="screen-frame tight"><img src="assets/13-coupon-issue.png" alt="쿠폰 발행 화면"></div>
+            <figcaption class="screen-caption">쿠폰 발행 화면</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">13 <span class="total">/ 14</span></span>
+    </footer>
+  </section>
+
+  <!-- ===================================================
+       14 · How I Work
+       =================================================== -->
+  <section class="slide s14" data-page="14">
+    <header class="slide-head">
+      <p class="meta">HOW I WORK</p>
+      <h2 class="title">숫자를 먼저 확인하고, 원인과 실행 순서를 정한 뒤,<br>결과를 다음 운영에 반영합니다</h2>
+    </header>
+
+    <div class="slide-body">
+      <ol class="process">
+        <li class="step">
+          <div class="step-track"><span class="step-no num">01</span></div>
+          <h3>숫자 확인</h3>
+          <ul><li>매출·마진·전환 지표에서 이상 신호 찾기 (04, 09)</li></ul>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">02</span></div>
+          <h3>원인과 비용 정리</h3>
+          <ul>
+            <li>가격·혜택·구조 중 원인 정리</li>
+            <li>비용과 예상 수익률 계산 (05, 08)</li>
+          </ul>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">03</span></div>
+          <h3>실행 순서 결정과 협업</h3>
+          <ul><li>정책·예외 정의 → 개발·유관 부서 협업 → QA (10, 12)</li></ul>
+        </li>
+        <li class="step">
+          <div class="step-track"><span class="step-no num">04</span></div>
+          <h3>다음 운영에 반영</h3>
+          <ul><li>성과 분석 결과를 다음 프로모션과 운영 기준에 반영 (06, 07, 13)</li></ul>
+        </li>
+      </ol>
+
+      <p class="contact"><b>김현아</b><span class="num">010.8020.6186</span><span>hyuna95728@gmail.com</span></p>
+    </div>
+
+    <footer class="slide-foot">
+      <span class="page num">14 <span class="total">/ 14</span></span>
     </footer>
   </section>
 
